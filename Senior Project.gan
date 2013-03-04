@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Senior Project" company="" webLink="http://" view-date="2013-01-01" view-index="0" gantt-divider-location="383" resource-divider-location="300" version="2.0" locale="en_US">
+<project name="Senior Project" company="" webLink="http://" view-date="2012-09-01" view-index="0" gantt-divider-location="383" resource-divider-location="300" version="2.0" locale="en_US">
     <description><![CDATA[Life Alert Redesign]]></description>
-    <view zooming-state="default:9" id="gantt-chart">
-        <field id="tpd3" name="Name" width="65" order="0"/>
-        <field id="tpd4" name="Begin date" width="18" order="1"/>
-        <field id="tpd5" name="End date" width="16" order="2"/>
+    <view zooming-state="default:10" id="gantt-chart">
+        <field id="tpd3" name="Name" width="56" order="0"/>
+        <field id="tpd4" name="Begin date" width="21" order="1"/>
+        <field id="tpd5" name="End date" width="21" order="2"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="Name" width="50" order="0"/>
-        <field id="1" name="Default role" width="50" order="1"/>
+        <field id="0" name="Name" width="52" order="0"/>
+        <field id="1" name="Default role" width="47" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -36,48 +36,53 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="12" name="Conceptual Design" color="#8cb6ce" meeting="false" start="2013-01-01" duration="89" complete="20" expand="true">
+        <task id="12" name="Conceptual Design" color="#8cb6ce" meeting="false" start="2013-01-01" duration="100" complete="18" expand="true">
             <task id="0" name="System Analysis Report" color="#8cb6ce" meeting="false" start="2013-01-01" duration="60" complete="50" priority="0" expand="true"/>
-            <task id="2" name="Medial Research" color="#8cb6ce" meeting="false" start="2013-02-01" duration="43" complete="0" priority="2" expand="true"/>
-            <task id="4" name="Hardware Research" color="#8cb6ce" meeting="false" start="2013-02-01" duration="43" complete="0" expand="true"/>
-            <task id="19" name="Determine Device Design Path" color="#8cb6ce" meeting="false" start="2013-02-28" duration="31" complete="0" expand="true"/>
+            <task id="2" name="Medial Research" color="#8cb6ce" meeting="false" start="2013-02-15" duration="16" complete="0" priority="2" expand="true">
+                <task id="56" name="Research Falls" color="#8cb6ce" meeting="false" start="2013-02-15" duration="15" complete="0" expand="true"/>
+                <task id="58" name="Types of Heart rates" color="#8cb6ce" meeting="false" start="2013-02-20" duration="11" complete="0" expand="true"/>
+            </task>
+            <task id="4" name="Hardware Research" color="#8cb6ce" meeting="false" start="2013-02-01" duration="69" complete="0" expand="true"/>
+            <task id="59" name="Compare Different current devices" color="#8cb6ce" meeting="false" start="2013-02-25" duration="4" complete="0" expand="true"/>
+            <task id="19" name="Determine Device Design Path" color="#8cb6ce" meeting="false" start="2013-02-22" duration="8" complete="0" expand="true"/>
+            <task id="62" name="Determine Specific Specifications" color="#8cb6ce" meeting="false" start="2013-02-12" duration="9" complete="0" expand="true"/>
         </task>
-        <task id="34" name="Website Construction" color="#8cb6ce" meeting="false" start="2013-02-01" duration="38" complete="0" expand="true"/>
+        <task id="34" name="Website Construction" color="#8cb6ce" meeting="false" start="2013-02-15" duration="19" complete="0" expand="true"/>
         <task id="52" name="SPRING BREAK" color="#8cb6ce" meeting="false" start="2013-03-11" duration="5" complete="0" expand="true"/>
-        <task id="14" name="Detailed Design" color="#8cb6ce" meeting="false" start="2013-03-01" duration="55" complete="0" expand="true">
-            <task id="22" name="Create Technical Schematic" color="#8cb6ce" meeting="false" start="2013-03-18" duration="20" complete="0" expand="true"/>
-            <task id="23" name="Create Software Sudo Code" color="#8cb6ce" meeting="false" start="2013-03-18" duration="20" complete="0" expand="true"/>
-            <task id="8" name="Create List of what I need" color="#8cb6ce" meeting="false" start="2013-03-18" duration="11" complete="0" expand="true"/>
-            <task id="7" name="Order Parts" color="#8cb6ce" meeting="false" start="2013-03-20" duration="3" complete="0" expand="true"/>
-            <task id="50" name="Software Simulations" color="#8cb6ce" meeting="false" start="2013-03-20" duration="32" complete="0" expand="true"/>
-            <task id="51" name="Hardware Simulations" color="#8cb6ce" meeting="false" start="2013-03-20" duration="32" complete="0" expand="true"/>
-            <task id="18" name="Intermediate Report" color="#8cb6ce" meeting="false" start="2013-03-01" duration="55" complete="0" expand="true"/>
+        <task id="14" name="Detailed Design" color="#8cb6ce" meeting="false" start="2013-03-18" duration="45" complete="0" expand="true">
+            <task id="22" name="Create Technical Schematic" color="#8cb6ce" meeting="false" start="2013-03-18" duration="14" complete="0" expand="true"/>
+            <task id="23" name="Create Software Sudo Code" color="#8cb6ce" meeting="false" start="2013-03-18" duration="10" complete="0" expand="true"/>
+            <task id="8" name="Create List of what I need" color="#8cb6ce" meeting="false" start="2013-03-18" duration="20" complete="0" expand="true"/>
+            <task id="7" name="Order Parts" color="#8cb6ce" meeting="false" start="2013-04-08" duration="24" complete="0" expand="true"/>
+            <task id="50" name="Software Simulations" color="#8cb6ce" meeting="false" start="2013-03-31" duration="12" complete="0" expand="true"/>
+            <task id="51" name="Hardware Simulations" color="#8cb6ce" meeting="false" start="2013-03-28" duration="19" complete="0" expand="true"/>
+            <task id="18" name="Intermediate Report" color="#8cb6ce" meeting="false" start="2013-04-05" duration="25" complete="0" expand="true"/>
         </task>
         <task id="54" name="FINAL EXAMS" color="#8cb6ce" meeting="false" start="2013-05-01" duration="10" complete="0" expand="true"/>
-        <task id="15" name="Device Construction" color="#8cb6ce" meeting="false" start="2013-04-01" duration="153" complete="0" expand="true">
-            <task id="20" name="Aquire Parts" color="#8cb6ce" meeting="false" start="2013-04-01" duration="15" complete="0" expand="true"/>
+        <task id="15" name="Device Construction" color="#8cb6ce" meeting="false" start="2013-04-01" duration="140" complete="0" expand="true">
+            <task id="20" name="Aquire Parts" color="#8cb6ce" meeting="false" start="2013-04-01" duration="21" complete="0" expand="true"/>
             <task id="24" name="Review Part Specifications" color="#8cb6ce" meeting="false" start="2013-04-15" duration="6" complete="0" expand="true"/>
-            <task id="21" name="Individually Test Parts" color="#8cb6ce" meeting="false" start="2013-04-01" duration="20" complete="0" expand="true"/>
+            <task id="21" name="Individually Test Parts" color="#8cb6ce" meeting="false" start="2013-04-09" duration="14" complete="0" expand="true"/>
             <task id="37" name="Confirm Device Specifications" color="#8cb6ce" meeting="false" start="2013-04-20" duration="11" complete="0" expand="true"/>
             <task id="25" name="Assemble Hardware" color="#8cb6ce" meeting="false" start="2013-05-20" duration="42" complete="0" expand="true">
                 <task id="27" name="Implement test software" color="#8cb6ce" meeting="false" start="2013-05-20" duration="22" complete="0" expand="true"/>
                 <task id="26" name="Assemble and Test Hardware" color="#8cb6ce" meeting="false" start="2013-06-01" duration="30" complete="0" expand="true"/>
             </task>
-            <task id="33" name="Programming" color="#8cb6ce" meeting="false" start="2013-07-01" duration="62" complete="0" expand="true">
-                <task id="28" name="Begin to Implement Emergency Action Logic" color="#8cb6ce" meeting="false" start="2013-07-01" duration="7" complete="0" expand="true"/>
-                <task id="29" name="Begin Accelerometer logic" color="#8cb6ce" meeting="false" start="2013-07-07" duration="8" complete="0" expand="true"/>
-                <task id="30" name="Begin Pulse Logic" color="#8cb6ce" meeting="false" start="2013-07-14" duration="8" complete="0" expand="true"/>
-                <task id="31" name="Begin Habbitual Logic" color="#8cb6ce" meeting="false" start="2013-07-21" duration="16" complete="0" expand="true"/>
-                <task id="32" name="Debug Software" color="#8cb6ce" meeting="false" start="2013-08-01" duration="31" complete="0" expand="true"/>
+            <task id="33" name="Programming" color="#8cb6ce" meeting="false" start="2013-07-01" duration="49" complete="0" expand="true">
+                <task id="28" name="Begin to Implement Emergency Action Logic" color="#8cb6ce" meeting="false" start="2013-07-01" duration="9" complete="0" expand="true"/>
+                <task id="29" name="Begin Accelerometer logic" color="#8cb6ce" meeting="false" start="2013-07-07" duration="13" complete="0" expand="true"/>
+                <task id="30" name="Begin Pulse Logic" color="#8cb6ce" meeting="false" start="2013-07-14" duration="16" complete="0" expand="true"/>
+                <task id="31" name="Begin Habbitual Logic" color="#8cb6ce" meeting="false" start="2013-07-21" duration="20" complete="0" expand="true"/>
+                <task id="32" name="Debug Software" color="#8cb6ce" meeting="false" start="2013-08-01" duration="18" complete="0" expand="true"/>
             </task>
         </task>
-        <task id="16" name="Device Testing" color="#8cb6ce" meeting="false" start="2013-09-01" duration="96" complete="0" expand="true">
-            <task id="35" name="Software Logic Debugging" color="#8cb6ce" meeting="false" start="2013-09-01" duration="30" complete="0" expand="true"/>
-            <task id="36" name="Hardware Logic Debugging" color="#8cb6ce" meeting="false" start="2013-09-01" duration="30" complete="0" expand="true"/>
+        <task id="16" name="Device Testing" color="#8cb6ce" meeting="false" start="2013-08-17" duration="111" complete="0" expand="true">
+            <task id="35" name="Software Logic Debugging" color="#8cb6ce" meeting="false" start="2013-08-17" duration="26" complete="0" expand="true"/>
+            <task id="36" name="Hardware Logic Debugging" color="#8cb6ce" meeting="false" start="2013-08-23" duration="26" complete="0" expand="true"/>
             <task id="38" name="Signal Testing" color="#8cb6ce" meeting="false" start="2013-09-25" duration="4" complete="0" expand="true"/>
-            <task id="39" name="Durability Testing" color="#8cb6ce" meeting="false" start="2013-10-01" duration="20" complete="0" expand="true"/>
-            <task id="40" name="User Interface Testing" color="#8cb6ce" meeting="false" start="2013-10-15" duration="17" complete="0" expand="true"/>
-            <task id="45" name="Final Full Testing" color="#8cb6ce" meeting="false" start="2013-11-01" duration="35" complete="0" expand="true"/>
+            <task id="39" name="Durability Testing" color="#8cb6ce" meeting="false" start="2013-09-16" duration="12" complete="0" expand="true"/>
+            <task id="40" name="User Interface Testing" color="#8cb6ce" meeting="false" start="2013-09-09" duration="27" complete="0" expand="true"/>
+            <task id="45" name="Final Full Testing" color="#8cb6ce" meeting="false" start="2013-10-07" duration="60" complete="0" expand="true"/>
         </task>
         <task id="17" name="Final Report &amp; Presentation" color="#8cb6ce" meeting="false" start="2013-12-01" duration="20" complete="0" expand="true"/>
     </tasks>
@@ -94,9 +99,9 @@
         <displaycolumn property-id="tpd9" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd1" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd0" order="-1" width="75" visible="false"/>
-        <displaycolumn property-id="tpd3" order="0" width="237" visible="true"/>
-        <displaycolumn property-id="tpd4" order="1" width="66" visible="true"/>
-        <displaycolumn property-id="tpd5" order="2" width="59" visible="true"/>
+        <displaycolumn property-id="tpd3" order="0" width="204" visible="true"/>
+        <displaycolumn property-id="tpd4" order="1" width="79" visible="true"/>
+        <displaycolumn property-id="tpd5" order="2" width="79" visible="true"/>
     </taskdisplaycolumns>
     <previous/>
     <roles roleset-name="Default"/>
