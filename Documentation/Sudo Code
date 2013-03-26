@@ -1,0 +1,126 @@
+void loadUserData();
+void testHardwareConnections();
+
+int getData();					//Returns error to describe hardware error
+int anaylizeData();				//Checks gathered data with saved personal information, returns emergency code
+
+void notifyUser();				//Notifies user of hardware problem
+void emergency(int);			//Starts the emergency protocol
+void checkEmergency();			//Confirm emergency; exception is manual activation
+void activate();				//Construct message and interact with GSM module 
+
+void getHeartRateData();
+void getAccelerometerData();
+
+int main()
+{
+	//Only done on initial startup
+	loadUserData();
+	testHardwareConnections();
+	
+	while(1)		//Infinite Loop
+	{
+		int hardwareError = getData();
+		
+		if(hardwareError)
+			notifyUser();
+
+		int emergencyCode = analyzeData();
+
+		if(emergencyCode != 0)
+			emergency(emergencyCode);
+	}
+}
+
+//This will read data from the SD card
+void loadUserData()
+{
+	//TOGET:
+	//	User heart rate parameters
+	//	Average G force
+	//	User name
+	//	User address
+	//	User health Information
+}
+
+//This will test connections to the physical peripherals 
+//Send test information to each component
+void testHardwareConnections()
+{
+	
+}
+
+//Notifies user of hardware problem - Buzzer?
+void notifyUser()
+{
+	
+}
+
+//Looks at data in respect to the saved data parameters
+int anaylizeData()
+{
+	
+}
+
+void emergency(int code)
+{
+	if(code != 4)
+		checkEmergency();
+
+	switch(code)
+	{
+		case 1:		//HeartRate Emergency
+		{
+			break;
+		}
+		case 2:		//Fall Emergency
+		{
+			break;
+		}
+		case 3:		//Habitual Emergency
+		{
+			break;
+		}
+		case 4:		//Manual Activation Emergency
+		{
+			break;
+		}
+	}
+	activate();
+}
+
+//Check Emergency
+void checkEmergency()
+{
+	getData();
+	analyizeData();
+}
+
+void activate()
+{
+	//Get GSP location
+	//Parse information
+	//Construct Message
+	//Send Message
+}
+
+//Gets data from devices
+int getData()
+{
+	getHeartRateData();
+	getAccelerometerData();
+}
+
+//Reads heartrate data
+void getHeartRateData()
+{
+	
+}
+
+//Reads Accelerometer
+void getAccelerometerData()
+{
+	
+}
+
+
