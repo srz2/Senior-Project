@@ -24,6 +24,7 @@ bool checkHeartRateSensor();
 //User Information
 bool loadUserInformation(PersonProfile&);
 void displayUser(PersonProfile);
+void getUserLocation();
 
 //Get Data Functions
 int getData();
@@ -68,8 +69,11 @@ int main()
 
 	while(programRunning)
 	{
+		sleep(3);
 		int errorFlag = getData();
-		
+		if(errorFlag != kError_NoErrors)
+			programRunning = false;
+
 		//Might want to look into multithreading...
 		switch (errorFlag)
 		{
@@ -81,12 +85,20 @@ int main()
 			case kError_AccelerometerRead:
 			{
 				cout << "Send Information for Fall emergency" << endl;
+				cout << newPerson.getName() << " has experienced a fall and can't get up!\n" << endl;
+				cout << "They are located at ";
+				getUserLocation();
+				cout << endl;
 				break;
 			}
 			case kError_HeartRateRead:
 			{
-				break;
 				cout << "Send Information for heart rate emergency" << endl;
+				cout << newPerson.getName() << " is experiencing a heart related emergency. Current BPM: 28\n";
+				cout << "They are located at ";
+				getUserLocation();
+				cout << endl;
+				break;
 			}
 		}
 	}
@@ -178,11 +190,28 @@ int getData()
 
 bool readAccelerometer()
 {
-	return true;
+	ifstream inFile("AccelData.txt");
+	int val = -1;
+	inFile >> val;
+	if(val == 0)
+		return true;
+	else
+		return false;
 }
 
 bool readHeartRate()
 {
-	return true;
+	ifstream inFile("HeartData.txt");
+	int val = -1;
+	inFile >> val;
+	if(val == 0)
+		return true;
+	else
+		return false;
+}
+
+void getUserLocation()
+{
+	cout << "\n25.64374\n56.65874";
 }
 
