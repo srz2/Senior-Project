@@ -2,13 +2,17 @@
 //Steven Zilberberg
 
 #include <iostream>
+#include <pthread.h>
+#include <unistd.h>
 #include <fstream>
 #include "PersonProfile.h"
 using namespace std;
 
 //Constants
 const int kNumberOfUserItems = 10;
-const string kUserProfile = "UserData.txt";
+const string kUserProfileFile = "UserData.txt";
+const string kHeartDataFile = "HeartData.txt";
+const string kAccelDataFile = "AccelData.txt";
 
 	//Error Codes
 const int kError_NoErrors = 0;
@@ -20,6 +24,7 @@ bool systemCheck();
 bool checkGSMSensor();
 bool checkGPSSensor();
 bool checkHeartRateSensor();
+bool checkFiles();
 
 //User Information
 bool loadUserInformation(PersonProfile&);
@@ -32,32 +37,90 @@ bool readAccelerometer();
 bool readHeartRate();
 
 //File I/O
-bool check();
+bool check(string file);
+
+//Housekeeping Functions
+void flush();
+void waitForEnter();
+
+//MultithreadFunctions
+void * programUserMenu(void* passedPerson);
+PersonProfile newPerson = PersonProfile();
 
 int main()
 {
-	PersonProfile newPerson = PersonProfile();
+
 	bool systemOK = false, userLoaded = false, programRunning = false; 
 
 
 	cout << "System Check....";
 	systemOK = systemCheck();
-	cout << "Complete" << endl;
+	if(systemOK)
+		cout << "Complete" << endl;
+	else
+		cout << "Fail" << endl;
 
-	cout << "Loading user information...";
-	userLoaded = loadUserInformation(newPerson);
-	cout << "Complete" << endl << endl;
-
-	cout << "User Information Succesfully Loaded" << endl;
-	displayUser(newPerson);
-	cout << "--------------------------------------" << endl;
+	if(systemOK)
+	{
+		cout << "Loading user information...";
+		userLoaded = loadUserInformation(newPerson);
+		if(userLoaded)
+			cout << "Complete" << endl << endl;
+		else
+			cout << "Fail" << endl << endl;
+	}
 
 	if(systemOK && userLoaded)
 	{
+		cout << "User Information Succesfully Loaded" << endl;
+		displayUser(newPerson);
+		cout << "--------------------------------------" << endl;
+
 		programRunning = true;
 		cout << "********************************************************" << endl;
 		cout << "Program Started Succesfully. Now Running" << endl;
 		cout << "********************************************************" << endl;
+
+		pthread_t menuThread;
+		pthread_create( &menuThread, NULL, programUserMenu, &newPerson);
+
+		while(programRunning)
+		{
+			sleep(1);
+			int errorFlag = getData();
+			if(errorFlag != kError_NoErrors)
+				programRunning = false;
+
+			//NEED to look into multithreading...DONE :D
+			switch (errorFlag)
+			{
+				case kError_NoErrors:
+				{
+					//No Errors
+					break;
+				}
+				case kError_AccelerometerRead:
+				{
+					cout << "Send Information for Fall emergency" << endl;
+					cout << newPerson.getName() << " has experienced a fall and can't get up!\n" << endl;
+					cout << "They are located at ";
+					getUserLocation();
+					cout << endl;
+					exit(kError_AccelerometerRead);
+					break;
+				}
+				case kError_HeartRateRead:
+				{
+					cout << "Send Information for heart rate emergency" << endl;
+					cout << newPerson.getName() << " is experiencing a heart related emergency. Current BPM: 28\n";
+					cout << "They are located at ";
+					getUserLocation();
+					cout << endl;
+					exit(kError_HeartRateRead);
+					break;
+				}
+			}
+		}
 	}
 	else
 	{
@@ -66,38 +129,48 @@ int main()
 		cout << "Error. Program Terminated" << endl;
 		cout << "********************************************************" << endl;
 	}
+}
 
-	while(programRunning)
+void * programUserMenu(void* passedPerson)
+{
+	int option;
+	while(true)
 	{
-		sleep(3);
-		int errorFlag = getData();
-		if(errorFlag != kError_NoErrors)
-			programRunning = false;
+		cout << "Brofsky Shield Simulator Console" << endl;
+		cout << "1 - View User" << endl;
+		cout << "2 - View Emergency Contacts" << endl;
+		cout << "3 - View user information" << endl;
+		cout << "0 - Exit Program" << endl;
+		cin >> option;
 
-		//Might want to look into multithreading...
-		switch (errorFlag)
+		switch (option)
 		{
-			case kError_NoErrors:
+			case 0:
 			{
-				//No Errors
+				cout << "Program now Terminated" << endl;
+				exit(kError_NoErrors);
 				break;
 			}
-			case kError_AccelerometerRead:
+			case 1:
 			{
-				cout << "Send Information for Fall emergency" << endl;
-				cout << newPerson.getName() << " has experienced a fall and can't get up!\n" << endl;
-				cout << "They are located at ";
-				getUserLocation();
-				cout << endl;
+				cout << "User: " << newPerson.getName() << endl;
+				waitForEnter();
 				break;
 			}
-			case kError_HeartRateRead:
+			case 2:
 			{
-				cout << "Send Information for heart rate emergency" << endl;
-				cout << newPerson.getName() << " is experiencing a heart related emergency. Current BPM: 28\n";
-				cout << "They are located at ";
-				getUserLocation();
-				cout << endl;
+				newPerson.viewAllContacts();
+				waitForEnter();
+				break;
+			}
+			case 3:
+			{
+				cout << newPerson.toString() << endl;
+				waitForEnter();
+				break;
+			}
+			default:
+			{
 				break;
 			}
 		}
@@ -109,7 +182,8 @@ bool systemCheck()
 	bool gsmOK = checkGSMSensor();
 	bool gpsOK = checkGPSSensor();
 	bool heartOK = checkHeartRateSensor();
-	if(gsmOK && gpsOK && heartOK)
+	bool filesFound = checkFiles();
+	if(gsmOK && gpsOK && heartOK && filesFound)
 		return true;
 	else
 		return false;
@@ -130,12 +204,25 @@ bool checkHeartRateSensor()
 	return true;
 }
 
+bool checkFiles()
+{
+	bool userData = check(kUserProfileFile);
+	bool accelData = check(kAccelDataFile);
+	bool heartData = check(kHeartDataFile);
+
+	if(userData && accelData && heartData)
+		return true;
+	else
+		return false;
+}
+
 bool loadUserInformation(PersonProfile& person)
 {
-	bool userProfileFound = check();
+	bool userProfileFound = check(kUserProfileFile);
+
 	if(userProfileFound)
 	{
-		ifstream inFile(kUserProfile.c_str());
+		ifstream inFile(kUserProfileFile.c_str());
 		string token;
 		inFile >> token;				//get first name
 		person.setFirstName(token);
@@ -149,6 +236,11 @@ bool loadUserInformation(PersonProfile& person)
 		getline(inFile, token);			//Dummy Pull
 		getline(inFile, token);			//Get Allergies
 		person.setAllergies(token);
+		while(getline(inFile, token))	//Get Emergency Contacts
+		{
+			person.addNewContact(Contact(token));
+		}
+		inFile.close();
 
 		return true;
 	}
@@ -164,15 +256,19 @@ void displayUser(PersonProfile person)
 	cout << "DOB: " << person.getBirthday() << endl;
 	cout << "Blood Type: " << person.getBloodType() << endl;
 	cout << "Allergies: " << person.getAllergies() << endl;
+	cout << "Emergency Contacts: " << person.getNumberOfContacts() << endl;
 }
 
-bool check()
+bool check(string file)
 {
-	ifstream inFile(kUserProfile.c_str());
+	ifstream inFile(file.c_str());
 	if(inFile)
 		return true;
 	else
+	{
+		cout << file << " Not Found" << endl;
 		return false;
+	}
 }
 
 int getData()
@@ -190,7 +286,9 @@ int getData()
 
 bool readAccelerometer()
 {
-	ifstream inFile("AccelData.txt");
+	check(kAccelDataFile);
+
+	ifstream inFile(kAccelDataFile.c_str());
 	int val = -1;
 	inFile >> val;
 	if(val == 0)
@@ -201,7 +299,9 @@ bool readAccelerometer()
 
 bool readHeartRate()
 {
-	ifstream inFile("HeartData.txt");
+	check(kHeartDataFile);
+
+	ifstream inFile(kHeartDataFile.c_str());
 	int val = -1;
 	inFile >> val;
 	if(val == 0)
@@ -213,5 +313,18 @@ bool readHeartRate()
 void getUserLocation()
 {
 	cout << "\n25.64374\n56.65874";
+}
+
+void flush()
+{
+	int ch;
+	while ((ch = cin.get()) != '\n' && ch != EOF);
+}
+
+void waitForEnter()
+{
+	string dummy;
+	flush();
+	getline(cin, dummy);
 }
 

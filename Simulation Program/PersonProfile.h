@@ -1,5 +1,12 @@
+//Senior Project Logic Code Simulation
+//PersonProfile Class Header
+//Steven Zilberberg
+
 #include <iostream>
+#include "Contact.h"
 using namespace std;
+
+const int kNumberOfContacts = 10;
 
 class PersonProfile
 {
@@ -11,6 +18,9 @@ class PersonProfile
 
 		string bloodType;
 		string allergies;
+
+		Contact listOfContacts[kNumberOfContacts];
+		int contactIndex;
 	public:
 		PersonProfile();
 
@@ -24,4 +34,13 @@ class PersonProfile
 		string getBirthday();
 		string getBloodType();
 		string getAllergies();
+
+		string toString();
+
+		bool addNewContact(Contact newContact);
+		bool hasContacts();
+		int  getNumberOfContacts();
+		Contact getContactAtIndex(int index);
+		void viewAllContacts();
+
 };
