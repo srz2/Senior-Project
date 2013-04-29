@@ -263,7 +263,9 @@ bool check(string file)
 {
 	ifstream inFile(file.c_str());
 	if(inFile)
+	{
 		return true;
+	}
 	else
 	{
 		cout << file << " Not Found" << endl;
