@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Senior Project" company="" webLink="http://" view-date="2012-09-01" view-index="0" gantt-divider-location="383" resource-divider-location="300" version="2.0" locale="en_US">
+<project name="Senior Project" company="" webLink="http://" view-date="2013-01-01" view-index="0" gantt-divider-location="383" resource-divider-location="300" version="2.0" locale="en_US">
     <description><![CDATA[Life Alert Redesign]]></description>
-    <view zooming-state="default:10" id="gantt-chart">
+    <view zooming-state="default:9" id="gantt-chart">
         <field id="tpd3" name="Name" width="56" order="0"/>
         <field id="tpd4" name="Begin date" width="21" order="1"/>
         <field id="tpd5" name="End date" width="21" order="2"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="Name" width="52" order="0"/>
-        <field id="1" name="Default role" width="47" order="1"/>
+        <field id="0" name="Name" width="50" order="0"/>
+        <field id="1" name="Default role" width="49" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -36,8 +36,8 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="12" name="Conceptual Design" color="#8cb6ce" meeting="false" start="2013-01-01" duration="100" complete="18" expand="true">
-            <task id="0" name="System Analysis Report" color="#8cb6ce" meeting="false" start="2013-01-01" duration="60" complete="50" priority="0" expand="true"/>
+        <task id="12" name="Conceptual Design" color="#8cb6ce" meeting="false" start="2013-01-01" duration="100" complete="0" expand="true">
+            <task id="0" name="System Analysis Report" color="#8cb6ce" meeting="false" start="2013-01-01" duration="60" complete="0" priority="0" expand="true"/>
             <task id="2" name="Medial Research" color="#8cb6ce" meeting="false" start="2013-02-15" duration="16" complete="0" priority="2" expand="true">
                 <task id="56" name="Research Falls" color="#8cb6ce" meeting="false" start="2013-02-15" duration="15" complete="0" expand="true"/>
                 <task id="58" name="Types of Heart rates" color="#8cb6ce" meeting="false" start="2013-02-20" duration="11" complete="0" expand="true"/>

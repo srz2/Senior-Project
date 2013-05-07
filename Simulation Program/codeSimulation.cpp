@@ -105,7 +105,7 @@ int main()
 					cout << newPerson.getName() << " has experienced a fall and can't get up!\n" << endl;
 					cout << "They are located at ";
 					getUserLocation();
-					cout << endl;
+					cout << endl << "Emergency Message is Sent" << endl;
 					exit(kError_AccelerometerRead);
 					break;
 				}
@@ -115,7 +115,7 @@ int main()
 					cout << newPerson.getName() << " is experiencing a heart related emergency. Current BPM: 28\n";
 					cout << "They are located at ";
 					getUserLocation();
-					cout << endl;
+					cout << endl << "Emergency Message is Sent" << endl;
 					exit(kError_HeartRateRead);
 					break;
 				}
